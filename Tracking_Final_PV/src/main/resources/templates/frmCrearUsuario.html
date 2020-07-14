@@ -200,7 +200,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 						<form th:action="@{/usuarios/guardar}" th:object="${usuario}" method="post">
 						
-							<div class="form-group row">
+<!-- 							<div class="form-group row">
 							<input id="id"  type="hidden" th:field="*{idUsuario}">					
 								<label for="fecha" class="col-form-label form-control-label">FECHA-HORA</label> 
 								<div class="col-lg-9 input-group date" id="datetimepicker1" data-target-input="nearest">
@@ -221,31 +221,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 														format : "DD/MM/YYYY"
 													});
 										});
-							</script>
+							</script> -->
 							<div class="form-group row">	
 													
-								<input id="nombre" class="input--style-3" placeholder="DETALLES..." style="text-align: left;" required="required" autocomplete="off" type="text" th:field="*{detalleLugarRegistro}">
+								<input id="nombre" class="input--style-3" placeholder="Nombre..." style="text-align: left;" required="required" autocomplete="off" type="text" th:field="*{nombreUsuario}">
 							</div>
 							
 							<div class="form-group row">							
-								<input id="nombre" class="input--style-3" placeholder="Tripulantes..." style="text-align: left;" required="required" autocomplete="off" type="text" th:field="*{tripulantes}">
+								<input id="nombre" class="input--style-3" placeholder="Password..." style="text-align: left;" required="required" autocomplete="off" type="text" th:field="*{password}">
 							</div> 
 							
-							<div class="form-group row">	
+							<div class="form-group row">							
+								<input id="nombre" class="input--style-3" placeholder="Nombre Real..." style="text-align: left;" required="required" autocomplete="off" type="text" th:field="*{nombreReal}">
+							</div> 
+							
+							<div class="form-group row">							
+								<input id="nombre" class="input--style-3" placeholder="Password..." style="text-align: left;" required="required" autocomplete="off" type="text" th:field="*{apellidoReal}">
+							</div> 
+							
+							<div class="form-group row">							
+								<input id="nombre" class="input--style-3" placeholder="Password..." style="text-align: left;" required="required" autocomplete="off" type="text" th:field="*{tipoUsuario}">
+							</div> 
+<!-- 							<div class="form-group row">	
 							<label for="vehiculo" >Vehiculo</label>
 								<select id="vehiculo" class="form-control form-control-sm col-md-6" th:field="*{vehiculo}" >
 									<option th:each="vehiculo:${vehiculos}" 
 									th:value="${vehiculo.idVehiculo}"
 									th:text="${vehiculo.patente}"/>
 								</select>
-							</div>
+							</div> -->
 							
 							<div class="form-group row">
-							<label for="localidad" >Localidad</label>
-								<select id="localidad" class="form-control form-control-sm col-md-6" th:field="*{localidad}" >
-									<option th:each="localidad:${localidades}" 
-									th:value="${localidad.id}"
-									th:text="${localidad.nombreLocalidad}"/>				
+							<label for="rol" >Rol</label>
+								<select id="localidad" class="form-control form-control-sm col-md-6" th:field="*{roles}" >
+									<option th:each="rol:${roles}" 
+									th:value="${rol.id}"
+									th:text="${localidad.tipoRol}"/>				
 								</select>
 							</div>						
 							<div class="p-t-10">
