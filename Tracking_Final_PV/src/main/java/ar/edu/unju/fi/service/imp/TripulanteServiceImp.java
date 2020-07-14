@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unju.fi.entity.Tripulante;
+import ar.edu.unju.fi.entity.Vehiculo;
 import ar.edu.unju.fi.repository.ITripulanteRepository;
 import ar.edu.unju.fi.service.ITripulanteService;
 
@@ -32,28 +33,48 @@ public class TripulanteServiceImp implements ITripulanteService {
 	}
 
 	@Override
-	public void eliminarTripulante() {
+	public void eliminarTripulante(Long id) {
 		// TODO Auto-generated method stub
-		tripulanteRepository.delete(tripulante);
+		tripulanteRepository.deleteById(id);
 
 	}
 
 	@Override
 	public Optional<Tripulante> obtenerTripulante() {
 		// TODO Auto-generated method stub
-		return null;
+		return tripulanteRepository.findById(tripulante.getIdTripulante());
 	}
 
 	@Override
 	public List<Tripulante> obtenerTripulantes() {
 		// TODO Auto-generated method stub
-		return null;
+		return tripulanteRepository.findAll();
 	}
 
 	@Override
 	public Iterable<Tripulante> listarTripulantes() {
 		// TODO Auto-generated method stub
+		return tripulanteRepository.findAll();
+	}
+	
+
+	@Override
+	public Tripulante modificarTripulante(Tripulante tripulante) throws Exception {
+		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Tripulante buscarTripulante(Long id) throws Exception {
+		// TODO Auto-generated method stub
+		return tripulanteRepository.findById(id).orElseThrow( ()-> new Exception("El tripulante no existe") );
+	}
+
+	@Override
+	public void guardarTripulante(Tripulante tripulante) {
+		// TODO Auto-generated method stub
+		tripulanteRepository.save(tripulante);
+		
 	}
 	
 	

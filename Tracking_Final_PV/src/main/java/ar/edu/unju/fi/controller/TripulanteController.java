@@ -25,121 +25,51 @@ public class TripulanteController {
 	@Autowired
 	private Tripulante tripulante;
 	
-	@RequestMapping("/tripulante")
-	public String getTripulanteform(Model model) {
+	@GetMapping("/tripulantes/listar")
+	public String listarTripulantes(Model model) {
+
+		model.addAttribute("tripulantes", tripulanteService.listarTripulantes());
 		
-		return "/";
+		return "listarTripulante";
 	}
 	
-	
-	@GetMapping("/nuevoTripulante")
-	public String agregar(Model model) {
-		model.addAttribute("tripulante", tripulante);
-		return "tripulanteForm";
+	@GetMapping("/tripulantes/crear")
+	public String crearTripulante(Model model) {
+		Tripulante tripulanteNuevo = new Tripulante();
+		model.addAttribute("tripulante", tripulanteNuevo); 
+		model.addAttribute("tripulantes", tripulanteService.listarTripulantes());
+		return "frmCrearTripulante";
 	}
 	
-	
-
-
-
-//agregar
-	@GetMapping("/formulario-4")
-	public String cargarFormulario(Model model) {
-		model.addAttribute("tripulanteForm", new Tripulante());
-		model.addAttribute("listaTripulante", tripulanteService.obtenerTripulantes());
-		model.addAttribute("formTab", "active");
-		return "tripulanteForm";
+	@PostMapping("/tripulantes/guardar")
+	public String guardarTripulante(@ModelAttribute Tripulante tripulanteNuevo) {
+		tripulanteService.guardarTripulante(tripulanteNuevo);
+		return "redirect:/tripulantes/listar/";
 	}
 	
-	@PostMapping("/formulario-4")
-	public String crearTripulante(@Valid @ModelAttribute("tripulanteForm")Tripulante tripulante,BindingResult result, ModelMap model) {
-		//agregado valid(tambien en el modelo)y BindingResult 
-		if(result.hasErrors()) {
-			//si tira error se vuelve a la vista anterior
-			model .addAttribute("tripulanteForm", tripulante);
-			model.addAttribute("formTab", "active");
-			model.addAttribute("listaTripulantes", tripulanteService.obtenerTripulantes());
-		}else {
+	@GetMapping("/tripulantes/editar/{id}")
+	public String editarTripulante(@PathVariable("id")Long idTripulante ,Model model ) throws Exception{
 		try {
-			tripulanteService.guardarTripulante();
-			model.addAttribute("tripulanteForm", new Tripulante());
-			model.addAttribute("listTab", "active");
+			Tripulante tripulante = tripulanteService.buscarTripulante(idTripulante);
+			model.addAttribute("tripulante", tripulante);
+
 		}catch (Exception e) {
-			//pasar excepciones al html
-			model.addAttribute("formTripulanteErrorMessage", e.getMessage());
-			model.addAttribute("tripulanteForm",tripulante);
-			model.addAttribute("listaTripulantes",tripulanteService.obtenerTripulantes());
-			model.addAttribute("formTab", "active");
+			// TODO: handle exception
+		}
+
+		return "frmCrearTripulante";
+	}
+	
+	@GetMapping("/tripulantes/eliminar/{id}")
+	public String eliminarTripulante(@PathVariable("id")Long idTripulante ) throws Exception{
+		try {
+			tripulanteService.eliminarTripulante(idTripulante);
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		return "redirect:/tripulantes/listar";
+	}
 			
-		}
-	
-	}
-		return "tripulanteForm";
-}
-	@GetMapping("/formulario-4/cancelar")
-	public String cancelarEditarTripulante(ModelMap model) {
-		
-		return "redirect:/formulario-4";
-	}
-	
-	//modificar
-	/*
-	@GetMapping("/modificarTripulante/{id}")
-	public String obtenerFormularioModificarTripulante(Model model,@PathVariable(name="id") Long id) throws Exception{
-		try {
-			Tripulante tripulanteModificado = tripulanteService.guardarTripulante();// aqui va lo creado en localidad serviceimp y service
-			model.addAttribute("tripulanteForm", tripulanteModificado);
-			model.addAttribute("editMode", "true");
-		}catch (Exception e) {
-			model.addAttribute("formTripulanteErrorMessage", e.getMessage());
-			model.addAttribute("TripulanteForm", tripulante);
-			model.addAttribute("editMode", "false");
-		}
-		model.addAttribute("listatripulantes", tripulanteService.obtenerTripulantes());
-		model.addAttribute("formTab", "active");
-		
-	return "tripulanteForm";
-	}
-	
-	@PostMapping("/modificarTripulante")
-	public String postModificarTripulante(@Valid @ModelAttribute("tripulanteForm") Tripulante tripulante, BindingResult result, ModelMap model) {
-		if(result.hasErrors()) {
-			//si da error el objeto recibido se vuelve a enviar a la vista
-			model.addAttribute("tripulanteForm", tripulante);
-			model.addAttribute("formTab", "active");
-			model.addAttribute("editMode", "true");
-		}else {
-			try {
-				localidadService.modificar(tripulante);  // aqui va lo creado en localidad serviceimp y service
-				model.addAttribute("tripulanteForm", tripulante);
-				model.addAttribute("listTab", "active");
-				model.addAttribute("editMode", "false");		
-			} catch (Exception e) {
-				model.addAttribute("formTripulanteErrorMessage", e.getMessage());
-				model.addAttribute("tripulanteForm",tripulante);
-				model.addAttribute("listaTripulantes", tripulanteService.obtenerTripulantes());
-				model.addAttribute("editMode", "active");
-				
-			}
-		}
-		
-		model.addAttribute("listaTripulante", tripulanteService.obtenerTripulantes());
-		
-		
-		return "TripulanteForm";
-	}*/
-	
-	// eliminar 
-	
-	@GetMapping("/eliminarTripulante/{id}")
-	public String eliminarTripulante(Model model, @PathVariable(name="id") long id ) {
-		try {
-			tripulanteService.eliminarTripulante();
-		}catch(Exception e) {
-			model.addAttribute("listErrorMessage",e.getMessage());
-		}
-		return cargarFormulario(model);
-		
-	}
 
 }
