@@ -5,7 +5,6 @@ package ar.edu.unju.fi.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.ExecutionException;
 
 import ar.edu.unju.fi.entity.Localidad;
 

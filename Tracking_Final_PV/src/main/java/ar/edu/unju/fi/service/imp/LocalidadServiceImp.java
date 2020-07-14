@@ -35,7 +35,6 @@ public class LocalidadServiceImp implements ILocalidadService {
 	public void eliminarLocalidad(Long id) {
 		// TODO Auto-generated method stub
 		localidadRepository.deleteById(id);
-		
 	}
 
 	@Override

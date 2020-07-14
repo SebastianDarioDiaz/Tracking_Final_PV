@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ar.edu.unju.fi.entity.Localidad;
 import ar.edu.unju.fi.service.ILocalidadService;
 
-
-
-
 @Controller
 @RequestMapping
 public class LocalidadController {

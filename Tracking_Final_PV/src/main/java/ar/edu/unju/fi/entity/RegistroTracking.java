@@ -41,7 +41,7 @@ public class RegistroTracking implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_AUTO")
-	private Long idRegitroT;
+	private Long id;
 	
 	@Column(name = "RT_FECHA")
 	private LocalDateTime fechaHora;
@@ -84,18 +84,15 @@ public class RegistroTracking implements Serializable {
 		this.localidad = localidad;
 	}
 
-	/**
-	 * @return the idRegitroT
-	 */
-	public Long getIdRegitroT() {
-		return idRegitroT;
+	public Long getId() {
+		return id;
 	}
 
 	/**
-	 * @param idRegitroT the idRegitroT to set
+	 * @param id the id to set
 	 */
-	public void setIdRegitroT(Long idRegitroT) {
-		this.idRegitroT = idRegitroT;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	/**
@@ -104,6 +101,7 @@ public class RegistroTracking implements Serializable {
 	public LocalDateTime getFechaHora() {
 		return fechaHora;
 	}
+
 
 	/**
 	 * @param fechaHora the fechaHora to set
@@ -169,10 +167,9 @@ public class RegistroTracking implements Serializable {
 	}
 
 
-
 	@Override
 	public String toString() {
-		return "RegistroTracking [idRegitroT=" + idRegitroT + ", fechaHora=" + fechaHora + ", detalleLugarRegistro="
+		return "RegistroTracking [idRegitroT=" + id + ", fechaHora=" + fechaHora + ", detalleLugarRegistro="
 				+ detalleLugarRegistro + ", tripulantes=" + tripulantes + ", vehiculo=" + vehiculo + ", localidad="
 				+ localidad + "]";
 	}	

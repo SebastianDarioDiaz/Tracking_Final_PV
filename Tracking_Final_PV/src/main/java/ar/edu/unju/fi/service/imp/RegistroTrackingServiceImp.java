@@ -3,7 +3,6 @@
  */
 package ar.edu.unju.fi.service.imp;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,40 +25,33 @@ public class RegistroTrackingServiceImp implements IRegistroTrackingService {
 	private RegistroTracking registroTracking;
 	
 	@Override
-	public void guardarRegistroTracking(RegistroTracking tracking) {
+	public void guardarRegistro(RegistroTracking registroTracking) {
 		// TODO Auto-generated method stub
-		registroTrackingRepository.save(tracking);
+		registroTrackingRepository.save(registroTracking);
 	}
-
+	
 	@Override
-	public void eliminarRegistroTracking(RegistroTracking tracking) {
+	public void eliminarRegistro(Long id) {
 		// TODO Auto-generated method stub
-		registroTrackingRepository.delete(tracking);
-
+		registroTrackingRepository.deleteById(id);
 	}
-
 	@Override
-	public Optional<RegistroTracking> obtenerRegistroTracking() {
+	public Optional<RegistroTracking> obtenerRegistro() {
 		// TODO Auto-generated method stub
-		return registroTrackingRepository.findById(registroTracking.getIdRegitroT());
+		return registroTrackingRepository.findById(registroTracking.getId());
 	}
-
 	@Override
-	public List<RegistroTracking> obtenerRegistroTrackings() {
+	public RegistroTracking buscarRegistro(Long id) throws Exception {
 		// TODO Auto-generated method stub
-		return registroTrackingRepository.findAll();
+		return registroTrackingRepository.findById(id).orElseThrow( ()-> new Exception("El Registro no existe"));
 	}
-
-	@Override
-	public RegistroTracking buscarRegistroT(Long id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	@Override
 	public Iterable<RegistroTracking> listarRegistros() {
 		// TODO Auto-generated method stub
 		return registroTrackingRepository.findAll();
 	}
+	
 
+	
+	
 }

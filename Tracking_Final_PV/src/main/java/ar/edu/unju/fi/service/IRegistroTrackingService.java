@@ -3,7 +3,6 @@
  */
 package ar.edu.unju.fi.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import ar.edu.unju.fi.entity.RegistroTracking;
@@ -14,11 +13,10 @@ import ar.edu.unju.fi.entity.RegistroTracking;
  */
 public interface IRegistroTrackingService {
 
-	public void guardarRegistroTracking(RegistroTracking tracking);
-	public void eliminarRegistroTracking(RegistroTracking tracking);
-	public RegistroTracking buscarRegistroT(Long id) throws Exception;
-	Optional<RegistroTracking> obtenerRegistroTracking();
-	List<RegistroTracking> obtenerRegistroTrackings();
-	Iterable<RegistroTracking>listarRegistros();
+	public void guardarRegistro(RegistroTracking registroTracking);
+	public void eliminarRegistro(Long id);
+	Optional<RegistroTracking> obtenerRegistro();
+	public RegistroTracking buscarRegistro(Long id) throws Exception;
+	public Iterable<RegistroTracking>listarRegistros();
 	
 }
