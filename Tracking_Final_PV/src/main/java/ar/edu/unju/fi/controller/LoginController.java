@@ -27,10 +27,6 @@ public class LoginController {
 	@Autowired
 	private IUsuarioService usuarioService;
 	
-	@GetMapping({"/","/login"})
-	public String ingresar(Model model) {
-		return "index";
-	}
 	
 	@PostMapping("/ingresarUsuario")
 	public String loginUsuario(@ModelAttribute("usuarioForm")Usuario usuario, ModelMap model) throws Exception {
