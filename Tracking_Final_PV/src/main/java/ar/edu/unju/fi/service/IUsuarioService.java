@@ -3,8 +3,6 @@
  */
 package ar.edu.unju.fi.service;
 
-import java.util.List;
-import java.util.Optional;
 
 import ar.edu.unju.fi.entity.Usuario;
 
@@ -14,9 +12,10 @@ import ar.edu.unju.fi.entity.Usuario;
  */
 public interface IUsuarioService {
 
-	void guardarUsuario();
-	void eliminarUsuario();
-	Optional<Usuario> obtenerUsuario();
-	List<Usuario> obtenerUsuarios();
+	public void guardarUsuario(Usuario usuario);
+	public void eliminarUsuario(Long id);
+	public Usuario modificarUsuario(Usuario usuario) throws Exception;
+	public Usuario buscarUsuario(Long id) throws Exception;
+	public Iterable<Usuario> listarUsuarios();
 	
 }

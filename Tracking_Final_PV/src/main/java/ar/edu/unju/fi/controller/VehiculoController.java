@@ -26,7 +26,7 @@ public class VehiculoController {
 	@Autowired
 	private Vehiculo vehiculo;
 	
-	///VEHICULO///
+		///VEHICULO///
 		///VEHICULO///
 		///VEHICULO///
 		@GetMapping("/vehiculos/listar")

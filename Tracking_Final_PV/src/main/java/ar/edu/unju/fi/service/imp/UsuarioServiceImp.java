@@ -3,9 +3,6 @@
  */
 package ar.edu.unju.fi.service.imp;
 
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,31 +19,40 @@ public class UsuarioServiceImp implements IUsuarioService {
 
 	@Autowired
 	private IUsuarioRepository usuarioRepository;
+	
 	@Autowired
 	private Usuario usuario;
 	
 	@Override
-	public void guardarUsuario() {
+	public void guardarUsuario(Usuario usuario) {
 		// TODO Auto-generated method stub
-		usuarioRepository.save(usuario);
+		usuarioRepository.save(usuario);	
 	}
 
 	@Override
-	public void eliminarUsuario() {
+	public void eliminarUsuario(Long id) {
 		// TODO Auto-generated method stub
-		usuarioRepository.delete(usuario);
+		usuarioRepository.deleteById(id);
 	}
 
 	@Override
-	public Optional<Usuario> obtenerUsuario() {
+	public Usuario modificarUsuario(Usuario usuario) throws Exception {
 		// TODO Auto-generated method stub
-		return usuarioRepository.findById(usuario.getIdUsuario());
+		return null;
 	}
 
 	@Override
-	public List<Usuario> obtenerUsuarios() {
+	public Usuario buscarUsuario(Long id) throws Exception {
+		// TODO Auto-generated method stub
+		return usuarioRepository.findById(id).orElseThrow( ()-> new Exception("El usuario noe xiste"));
+	}
+
+	@Override
+	public Iterable<Usuario> listarUsuarios() {
 		// TODO Auto-generated method stub
 		return usuarioRepository.findAll();
 	}
+
+
 
 }
