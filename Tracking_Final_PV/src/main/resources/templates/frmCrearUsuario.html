@@ -200,30 +200,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 						<form th:action="@{/usuarios/guardar}" th:object="${usuario}" method="post">
 						
-<!-- 							<div class="form-group row">
-							<input id="id"  type="hidden" th:field="*{idUsuario}">					
-								<label for="fecha" class="col-form-label form-control-label">FECHA-HORA</label> 
-								<div class="col-lg-9 input-group date" id="datetimepicker1" data-target-input="nearest">
-									<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" id="fecha01" placeholder="Fecha-Hora" style="text-align: center;"/>
-									<div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-										<div class="input-group-text">
-											<i class="fa fa-calendar-alt"></i>
-										</div>
-									</div>
-								</div> 
-							</div>							 
-							<script type="text/javascript">
-										$(function() {
-											$('#datetimepicker1').datetimepicker({
-														format : "DD/MM/YYYY"
-													});
-											$('#datetimepicker2').datetimepicker({
-														format : "DD/MM/YYYY"
-													});
-										});
-							</script> -->
-							<div class="form-group row">	
-													
+							<div class="form-group row">
+							<input id="id"  type="hidden" th:field="*{idUsuario}">						
 								<input id="nombre" class="input--style-3" placeholder="Nombre..." style="text-align: left;" required="required" autocomplete="off" type="text" th:field="*{nombreUsuario}">
 							</div>
 							
@@ -236,29 +214,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div> 
 							
 							<div class="form-group row">							
-								<input id="nombre" class="input--style-3" placeholder="Password..." style="text-align: left;" required="required" autocomplete="off" type="text" th:field="*{apellidoReal}">
+								<input id="nombre" class="input--style-3" placeholder="Apellido Real..." style="text-align: left;" required="required" autocomplete="off" type="text" th:field="*{apellidoReal}">
 							</div> 
 							
-							<div class="form-group row">							
-								<input id="nombre" class="input--style-3" placeholder="Password..." style="text-align: left;" required="required" autocomplete="off" type="text" th:field="*{tipoUsuario}">
-							</div> 
-<!-- 							<div class="form-group row">	
-							<label for="vehiculo" >Vehiculo</label>
-								<select id="vehiculo" class="form-control form-control-sm col-md-6" th:field="*{vehiculo}" >
-									<option th:each="vehiculo:${vehiculos}" 
-									th:value="${vehiculo.idVehiculo}"
-									th:text="${vehiculo.patente}"/>
-								</select>
-							</div> -->
 							
-							<div class="form-group row">
-							<label for="rol" >Rol</label>
-								<select id="localidad" class="form-control form-control-sm col-md-6" th:field="*{roles}" >
-									<option th:each="rol:${roles}" 
-									th:value="${rol.id}"
-									th:text="${localidad.tipoRol}"/>				
+							<div class="form-group row">	
+							<label for="vehiculo" >ROL:</label>
+								<select id="vehiculo" class="form-control form-control-sm col-md-6" th:field="*{tipoUsuario}" >
+									<option th:value="BD" >BD</option>
+									<option th:value="REGISTRADOR">REGISTRADOR</option>
+									<option th:value="CONSULTOR">CONSULTOR</option>
 								</select>
-							</div>						
+							</div> 
+												
 							<div class="p-t-10">
 							<center>
 								<button class="btn btn--pill btn--green" type="submit"	value="GuardarCambios">ACEPTAR</button>

@@ -20,13 +20,23 @@ public class UsuarioController {
 	
 	@Autowired
 	private Usuario usuario;
+	
 			///USUARIO///
 			///USUARIO///
 			///USUARIO///
 	
 			@GetMapping("/usuarios/listar")
 			public String listarUsuarios(Model model) {
-
+				
+				/*Rol rolBD = new Rol("BD","Puede realizar ABM de Usuarios y Localidades");
+				Rol rolRegistrador = new Rol("REGISTRADOR","Puede realizar registros completos de trackig");
+				Rol rolConsultor = new Rol("CONSULTOR","Puede realizar consultas basadas en Localidad, Tripulante y Patente");
+				if(rolService.obtenerRoles().isEmpty()) {
+					rolService.guardarRol(rolBD);
+					rolService.guardarRol(rolRegistrador);
+					rolService.guardarRol(rolConsultor);
+					model.addAttribute("usuarios", usuarioService.listarUsuarios());
+				}*/
 				model.addAttribute("usuarios", usuarioService.listarUsuarios());
 				
 				return "listarUsuarios";

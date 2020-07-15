@@ -16,7 +16,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 
 /**
  * @author Diaz, Sebastián Darío - L.U.:3283
@@ -51,12 +53,13 @@ public class Usuario implements Serializable {
 	@Column(name = "TIPO_USUARIO")
 	private String tipoUsuario;
 	
-	@OneToMany(cascade = CascadeType.ALL, 
+	/*@OneToMany(cascade = CascadeType.ALL, 
 			   fetch = FetchType.EAGER)
-	private List<Rol> roles;
+	private List<Rol> roles;*/
 	
 	public Usuario() {
 		// TODO Auto-generated constructor stub
+
 	}
 
 	/**
@@ -67,14 +70,13 @@ public class Usuario implements Serializable {
 	 * @param tipoUsuario
 	 * @param roles
 	 */
-	public Usuario(String nombreUsuario, String password, String nombreReal, String apellidoReal, String tipoUsuario,
-			List<Rol> roles) {
+	public Usuario(String nombreUsuario, String password, String nombreReal, String apellidoReal, String tipoUsuario) {
 		this.nombreUsuario = nombreUsuario;
 		this.password = password;
 		this.nombreReal = nombreReal;
 		this.apellidoReal = apellidoReal;
 		this.tipoUsuario = tipoUsuario;
-		this.roles = roles;
+
 	}
 
 	/**
@@ -161,19 +163,6 @@ public class Usuario implements Serializable {
 		this.tipoUsuario = tipoUsuario;
 	}
 
-	/**
-	 * @return the roles
-	 */
-	public List<Rol> getRoles() {
-		return roles;
-	}
-
-	/**
-	 * @param roles the roles to set
-	 */
-	public void setRoles(List<Rol> roles) {
-		this.roles = roles;
-	}
 
 	/**
 	 * @return the serialversionuid
@@ -185,8 +174,7 @@ public class Usuario implements Serializable {
 	@Override
 	public String toString() {
 		return "Usuario [idUsuario=" + idUsuario + ", nombreUsuario=" + nombreUsuario + ", password=" + password
-				+ ", nombreReal=" + nombreReal + ", apellidoReal=" + apellidoReal + ", tipoUsuario=" + tipoUsuario
-				+ ", roles=" + roles + "]";
+				+ ", nombreReal=" + nombreReal + ", apellidoReal=" + apellidoReal + ", tipoUsuario=" + tipoUsuario;
 	}
 	
 
