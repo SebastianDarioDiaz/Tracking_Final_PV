@@ -49,13 +49,13 @@ public class AutenticacionSuccessHandler implements AuthenticationSuccessHandler
 			}
 		}
 		if (tipoBD) {
-			redirectStrategy.sendRedirect(request, response, "localidades/listar");
+			redirectStrategy.sendRedirect(request, response, "/localidades");
 		} else {
 			if (tipoConsultor) {
-				redirectStrategy.sendRedirect(request, response, "/");
+				redirectStrategy.sendRedirect(request, response, "/consultas");
 			} else {
 				if (tipoRegistrador) {
-					redirectStrategy.sendRedirect(request, response, "/equipos");
+					redirectStrategy.sendRedirect(request, response, "/registros");
 				} else {
 					throw new IllegalStateException();
 				}

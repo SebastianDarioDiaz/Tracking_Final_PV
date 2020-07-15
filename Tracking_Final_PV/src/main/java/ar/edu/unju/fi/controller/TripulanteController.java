@@ -3,6 +3,7 @@ package ar.edu.unju.fi.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ar.edu.unju.fi.entity.Tripulante;
 import ar.edu.unju.fi.service.ITripulanteService;
 
+@Controller
 public class TripulanteController {
 	
 	
@@ -30,7 +32,7 @@ public class TripulanteController {
 
 		model.addAttribute("tripulantes", tripulanteService.listarTripulantes());
 		
-		return "listarTripulante";
+		return "listarTripulantes";
 	}
 	
 	@GetMapping("/tripulantes/crear")

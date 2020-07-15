@@ -154,7 +154,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						class="icon-bar"></span> <span class="icon-bar"></span>
 				</button>
 				<h1>
-					<a class="navbar-brand" href="index.html"><span><i
+					<a class="navbar-brand" href="#"><span><i
 							class="fa fa-truck" aria-hidden="true"></i></span>TRUCKING</a>
 				</h1>
 			</div>
@@ -163,19 +163,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				id="bs-example-navbar-collapse-1">
 				<nav class="link-effect-2" id="link-effect-2">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="index.html"><span
-								data-hover="PRINCIPAL">PRINCIPAL</span></a></li>
-						<li><a href="https://mail.google.com/mail/u/0/?tab=wm&ogbl"><span
-								data-hover="CONTACTO">CONTACTO</span></a></li>
-						<li><a href="/formulario"><span data-hover="SERVICIOS">SERVICIOS</span></a></li>
-						<!-- <li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span data-hover="Short Codes">Short Codes</span> <b class="caret"></b></a>
-							<ul class="dropdown-menu agile_short_dropdown">
-								<li><a href="icons.html">Web Icons</a></li>
-								<li><a href="typography.html">Typography</a></li>
-							</ul>
-						</li> -->
-						<li><a href="#"><span data-hover="RECOMENDACIONES">RECOMENDACIONES</span></a></li>
+						
 					</ul>
 				</nav>
 
@@ -200,35 +188,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<input id="id"  type="hidden" th:field="*{idTripulante}">
 							
 								<!-- <label class="col-m2-2" for="nombre">Patente: </label> -->
-								<input id="nombre" class="input--style-3" placeholder="Documento" style="text-align: left;" required="required" autocomplete="off" type="text" th:field="*{documentoTripulante}">
+								<input id="nombre" class="input--style-3" placeholder="Documento" style="text-align: center;" required="required" autocomplete="off" type="text" th:field="*{documentoTripulante}">
 							</div>
 							
 							<div class="form-group row">							
 								<!-- <label class="col-m2-2" for="nombre">Color: </label> -->
-								<input id="nombre" class="input--style-3" placeholder="Nombre" style="text-align: left;" required="required" autocomplete="off" type="text" th:field="*{nombresTripulante}">
+								<input id="nombre" class="input--style-3" placeholder="Nombre" style="text-align: center;" required="required" autocomplete="off" type="text" th:field="*{nombresTripulante}">
 							</div>
 							<div class="form-group row">							
 								<!-- <label class="col-m2-2" for="nombre">Titular: </label> -->
-								<input id="nombre" class="input--style-3" placeholder="Apellido" style="text-align: left;" required="required" autocomplete="off" type="text" th:field="*{apellidoTripulante}">
+								<input id="nombre" class="input--style-3" placeholder="Apellido" style="text-align: center;" required="required" autocomplete="off" type="text" th:field="*{apellidoTripulante}">
 							</div>
 							<div class="form-group row">							
 								<!-- <label class="col-m2-2" for="nombre">Marca: </label> -->
-								<input id="nombre" class="input--style-3" placeholder="Nacionalidad" style="text-align: left;" required="required" autocomplete="off" type="text" th:field="*{nacionalidadTripulante}">
+								<input id="nombre" class="input--style-3" placeholder="Nacionalidad" style="text-align: center;" required="required" autocomplete="off" type="text" th:field="*{nacionalidadTripulante}">
 							</div>
-							
-							
-							
-							<!-- <div class="form-group row">
-								<label class="col-m2-2" for="r">Registro: </label>
-								<select class="form-control form-control-sm col-sm-6" id="r">
-								<option th:each="r:${registros}" th:value="${r.id}" th:text="${r.nombreRegistro}"/>
-
-								</select>
-							</div> -->
 
 
 							<div class="p-t-10">
+							<center>
 								<button class="btn btn--pill btn--green" type="submit"	value="GuardarCambios">ACEPTAR</button>
+							</center>
 							</div>
 						</form>
 					</div> 
