@@ -21,12 +21,12 @@ public class MainController {
 	@RequestMapping("/home")
 	public String main(Model model) {
 		
-		return "index";
+		return "login";
 	}
 	
-	@GetMapping({"/","/login"})
+	@GetMapping({"/home","/","/login"})
 	public String ingresar(Model model) {
-		return "index";
+		return "login";
 	}
 	
 }

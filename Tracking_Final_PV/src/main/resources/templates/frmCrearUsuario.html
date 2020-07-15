@@ -201,9 +201,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<form th:action="@{/usuarios/guardar}" th:object="${usuario}" method="post">
 						
 							<div class="form-group row">
-							<input id="id"  type="hidden" th:field="*{idUsuario}">						
-								<input id="nombre" class="input--style-3" placeholder="Nombre..." style="text-align: left;" required="required" autocomplete="off" type="text" th:field="*{nombreUsuario}">
+							<input id="id"  type="hidden" th:field="*{idUsuario}">
+												
+								<input id="nombre" class="input--style-3" placeholder="Nombre Usuario..." style="text-align: left;" required="required" autocomplete="off" type="text" th:field="*{nombreUsuario}">
 							</div>
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('nombreUsuario')}" th:errors="*{nombreUsuario}"></small>
 							
 							<div class="form-group row">							
 								<input id="nombre" class="input--style-3" placeholder="Password..." style="text-align: left;" required="required" autocomplete="off" type="text" th:field="*{password}">
