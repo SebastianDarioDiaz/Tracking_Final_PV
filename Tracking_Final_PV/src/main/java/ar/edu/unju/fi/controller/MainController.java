@@ -44,7 +44,7 @@ public class MainController {
 		return "consultas";
 	}
 	
-	@GetMapping({"/home","/","/login",""})
+	@GetMapping({"/home","/","/login"})
 	public String ingresar(Model model) {
 		return "login";
 	}
