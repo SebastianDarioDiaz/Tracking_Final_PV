@@ -23,13 +23,14 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class AutenticacionSuccessHandler implements AuthenticationSuccessHandler {
-
+	
 	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		// TODO Auto-generated method stub
+		
 		boolean tipoBD = false;
 		boolean tipoConsultor = false;
 		boolean tipoRegistrador = false;
@@ -61,6 +62,7 @@ public class AutenticacionSuccessHandler implements AuthenticationSuccessHandler
 				}
 			}
 		}
+		
 	}
 
 }
