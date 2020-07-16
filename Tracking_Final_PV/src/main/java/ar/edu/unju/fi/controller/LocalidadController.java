@@ -39,6 +39,12 @@ public class LocalidadController {
 			return "listarLocalidades";
 		}
 		
+		@GetMapping("/indexBD")
+		public String principalBd() {
+			
+			return "indexBD";
+		}
+		
 		@GetMapping("/localidades/crear")
 		public String crear(Model model) {
 			Localidad localidadNueva = new Localidad();
