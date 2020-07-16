@@ -15,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -39,6 +40,7 @@ public class Usuario implements Serializable {
 	private Long idUsuario;
 	
 	@Column(name = "NOMBRE_USUARIO")
+	@Email
 	private String nombreUsuario;
 	
 	@Column(name = "PASS_USUARIO")

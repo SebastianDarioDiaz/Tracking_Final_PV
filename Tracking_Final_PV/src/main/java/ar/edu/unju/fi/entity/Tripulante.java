@@ -147,6 +147,7 @@ public class Tripulante implements Serializable {
 
 	
 
+
 	/**
 	 * @return the registros
 	 */
@@ -160,6 +161,14 @@ public class Tripulante implements Serializable {
 	 */
 	public void setRegistros(List<RegistroTracking> registros) {
 		this.registros = registros;
+	}
+
+
+	/**
+	 * @return the serialversionuid
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 

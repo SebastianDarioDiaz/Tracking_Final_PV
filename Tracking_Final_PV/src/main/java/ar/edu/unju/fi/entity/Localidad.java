@@ -5,6 +5,7 @@ package ar.edu.unju.fi.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -103,6 +104,14 @@ public class Localidad implements Serializable {
 	 */
 	public void setRegistros(List<RegistroTracking> registros) {
 		this.registros = registros;
+	}
+
+
+	/**
+	 * @return the serialversionuid
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 

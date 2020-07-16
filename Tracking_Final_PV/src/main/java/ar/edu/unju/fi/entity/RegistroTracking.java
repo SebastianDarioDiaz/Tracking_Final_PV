@@ -8,10 +8,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,6 +23,7 @@ import javax.persistence.ManyToOne;
 
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
@@ -50,18 +52,20 @@ public class RegistroTracking implements Serializable {
 	private String detalleLugarRegistro;
 	
 
-	@ManyToMany
-	@JoinTable(name = "REGISTROS_TRIPULANTES",joinColumns = @JoinColumn(name  = "ID_REGISTRO"), inverseJoinColumns = @JoinColumn(name =  "ID_TRIPULANTE") )
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+	@JoinTable( name = "REGISTROS_TRIPULANTES",joinColumns = @JoinColumn(name  = "ID_REGISTRO"), inverseJoinColumns = @JoinColumn(name =  "ID_TRIPULANTE"))
 	private List<Tripulante> tripulantes = new ArrayList<Tripulante>();
 	
-
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ID_VEHICULO")
+	
 	private Vehiculo vehiculo;
 	
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ID_LOCALIDAD")
+	
 	private Localidad localidad;
 	
 	public RegistroTracking() {
@@ -124,6 +128,8 @@ public class RegistroTracking implements Serializable {
 		this.detalleLugarRegistro = detalleLugarRegistro;
 	}
 
+	
+
 	/**
 	 * @return the tripulantes
 	 */
@@ -166,6 +172,14 @@ public class RegistroTracking implements Serializable {
 		this.localidad = localidad;
 	}
 
+	
+
+	/**
+	 * @return the serialversionuid
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	@Override
 	public String toString() {

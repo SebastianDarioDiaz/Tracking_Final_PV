@@ -201,7 +201,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<input id="id"  type="hidden" th:field="*{id}">					
 								<label for="fecha" class="col-form-label form-control-label">FECHA-HORA</label> 
 								<div class="col-lg-9 input-group date" id="datetimepicker1" data-target-input="nearest">
-									<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" id="fecha01" placeholder="Fecha-Hora" style="text-align: center;"/>
+									<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" id="fecha01"
+									th:field="*{fechaHora}" placeholder="Fecha-Hora" style="text-align: center;"/>
 									<div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
 										<div class="input-group-text">
 											<i class="fa fa-calendar-alt"></i>
@@ -224,9 +225,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<input id="nombre" class="input--style-3" placeholder="DETALLES..." style="text-align: left;" required="required" autocomplete="off" type="text" th:field="*{detalleLugarRegistro}">
 							</div>
 							
-							<div class="form-group row">							
-								<input id="nombre" class="input--style-3" placeholder="Tripulantes..." style="text-align: left;" required="required" autocomplete="off" type="text" th:field="*{tripulantes}">
+							 <div class="form-group row">	
+							<label for="vehiculo" >Tripulante</label>
+								<select id="tripulante" class="form-control form-control-sm col-md-6" th:field="*{tripulantes}" >
+									<option th:each="t:${listaTripulantes}" 
+									th:value="${t.idTripulante}"
+									th:text="${t.nombresTripulante}"/>
+								</select>
 							</div> 
+		
+
 							
 							<div class="form-group row">	
 							<label for="vehiculo" >Vehiculo</label>

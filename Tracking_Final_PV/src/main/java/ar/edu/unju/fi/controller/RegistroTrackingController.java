@@ -1,5 +1,7 @@
 package ar.edu.unju.fi.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import ar.edu.unju.fi.entity.Localidad;
 import ar.edu.unju.fi.entity.RegistroTracking;
+import ar.edu.unju.fi.entity.Tripulante;
 import ar.edu.unju.fi.entity.Vehiculo;
 import ar.edu.unju.fi.service.ILocalidadService;
 import ar.edu.unju.fi.service.IRegistroTrackingService;
+import ar.edu.unju.fi.service.ITripulanteService;
 import ar.edu.unju.fi.service.IVehiculoService;
 
 @Controller
@@ -33,6 +37,9 @@ public class RegistroTrackingController {
 	@Autowired
 	private IVehiculoService vehiculoService;
 	
+	@Autowired
+	private ITripulanteService tripulanteService;
+	
 			///REGISTRO TRACKING///
 			///REGISTRO TRACKING///
 			///REGISTRO TRACKING///
@@ -48,28 +55,42 @@ public class RegistroTrackingController {
 			}
 			
 			@GetMapping("/registros/crear")
-			public String crearRegistro(Model model) {
+			public String crearRegistro(Model model)  {
 				RegistroTracking registroNuevo = new RegistroTracking();
+				Tripulante tripulante = new Tripulante();
+				Iterable<Tripulante> listaTripulantes = tripulanteService.listarTripulantes();
 				Iterable<Localidad> localidades = localidadService.listarLocalidades();
 				Iterable<Vehiculo> vehiculos = vehiculoService.listarVehiculos();
 				model.addAttribute("registro", registroNuevo); 
-				model.addAttribute("registros", registroService.listarRegistros());
+				model.addAttribute("tripulante", tripulante);
+				//Lista de Vehiculos para el Select.
+				model.addAttribute("listaTripulantes", listaTripulantes);
 				//Lista de Vehiculos para el Select.
 				model.addAttribute("vehiculos", vehiculos); 
 				//Lista de localidades para el select.
 				model.addAttribute("localidades", localidades); 
-				
+				model.addAttribute("registros", registroService.listarRegistros());
 				return "frmCrearRegistro";
 			}
 			
 			@PostMapping("/registros/guardar")
-			public String guardarRegistro(@Valid @ModelAttribute RegistroTracking registroNuevo,BindingResult result,Model model) {
+			public String guardarRegistro(@Valid @ModelAttribute RegistroTracking registroNuevo,BindingResult result,Model model ) {
+				Tripulante tripulante = new Tripulante();
+				Iterable<Tripulante> listaTripulantes = tripulanteService.listarTripulantes();
+				Iterable<Localidad> localidades = localidadService.listarLocalidades();
+				Iterable<Vehiculo> vehiculos = vehiculoService.listarVehiculos();
 				if(result.hasErrors()) {
-					model.addAttribute("registro", registroTracking); 
-					model.addAttribute("registros", registroService.listarRegistros());
+					model.addAttribute("registro", registroNuevo); 
+					model.addAttribute("tripulante", tripulante);
+					
+					model.addAttribute("listaTripulantes", listaTripulantes);
+					model.addAttribute("vehiculos", vehiculos); 
+					model.addAttribute("localidades", localidades); 
 					System.out.println("Error al guardar Registro Tracking");
+					model.addAttribute("registros", registroService.listarRegistros());
 					return "frmCrearRegistro";
 				}
+				
 				
 				registroService.guardarRegistro(registroNuevo);	
 				System.out.println("Registro Tracking Guardada");
