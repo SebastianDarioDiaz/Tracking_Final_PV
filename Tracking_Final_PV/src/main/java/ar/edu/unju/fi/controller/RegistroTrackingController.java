@@ -46,7 +46,8 @@ public class RegistroTrackingController {
 			@GetMapping("/registros/listar")
 			public String listarRegistros(Model model) {
 				//Localidad localidadNueva = new Localidad();
-				//model.addAttribute("localidadNueva", localidadNueva);
+				//model.addAttribute("localidad", new Localidad());
+				//model.addAttribute("vehiculo", new Vehiculo());
 				
 
 				model.addAttribute("registros", registroService.listarRegistros());
@@ -57,12 +58,17 @@ public class RegistroTrackingController {
 			@GetMapping("/registros/crear")
 			public String crearRegistro(Model model)  {
 				RegistroTracking registroNuevo = new RegistroTracking();
-				Tripulante tripulante = new Tripulante();
+				Tripulante tripulanteGuardar = new Tripulante();
+				Localidad localidadNueva = new Localidad();
+				Vehiculo vehiculoNuevo = new Vehiculo();
+				
 				Iterable<Tripulante> listaTripulantes = tripulanteService.listarTripulantes();
 				Iterable<Localidad> localidades = localidadService.listarLocalidades();
 				Iterable<Vehiculo> vehiculos = vehiculoService.listarVehiculos();
 				model.addAttribute("registro", registroNuevo); 
-				model.addAttribute("tripulante", tripulante);
+				model.addAttribute("tripulanteGuardar", tripulanteGuardar);
+				model.addAttribute("localidadGuardar", localidadNueva);
+				model.addAttribute("vehiculo", vehiculoNuevo);
 				//Lista de Vehiculos para el Select.
 				model.addAttribute("listaTripulantes", listaTripulantes);
 				//Lista de Vehiculos para el Select.
@@ -70,30 +76,37 @@ public class RegistroTrackingController {
 				//Lista de localidades para el select.
 				model.addAttribute("localidades", localidades); 
 				model.addAttribute("registros", registroService.listarRegistros());
+				System.out.println("Registro Tracking Creado");
 				return "frmCrearRegistro";
 			}
 			
 			@PostMapping("/registros/guardar")
 			public String guardarRegistro(@Valid @ModelAttribute RegistroTracking registroNuevo,BindingResult result,Model model ) {
-				Tripulante tripulante = new Tripulante();
-				Iterable<Tripulante> listaTripulantes = tripulanteService.listarTripulantes();
+				Tripulante tripulanteGuardar = new Tripulante();
+				Iterable<Tripulante> tripulantes = tripulanteService.listarTripulantes();
 				Iterable<Localidad> localidades = localidadService.listarLocalidades();
 				Iterable<Vehiculo> vehiculos = vehiculoService.listarVehiculos();
-				if(result.hasErrors()) {
+				model.addAttribute("registro", registroNuevo); 
+				model.addAttribute("tripulanteGuardar", tripulanteGuardar);
+				model.addAttribute("tripulantes", tripulantes);
+				model.addAttribute("vehiculos", vehiculos); 
+				model.addAttribute("localidades", localidades);
+				
+				/*if(result.hasErrors()) {
 					model.addAttribute("registro", registroNuevo); 
-					model.addAttribute("tripulante", tripulante);
+					model.addAttribute("tripulanteGuardar", tripulanteGuardar);
 					
-					model.addAttribute("listaTripulantes", listaTripulantes);
+					model.addAttribute("tripulantes", tripulantes);
 					model.addAttribute("vehiculos", vehiculos); 
 					model.addAttribute("localidades", localidades); 
 					System.out.println("Error al guardar Registro Tracking");
 					model.addAttribute("registros", registroService.listarRegistros());
 					return "frmCrearRegistro";
-				}
-				
-				
+				}*/
+			
+				registroNuevo.getTripulantes().add(tripulanteGuardar);
 				registroService.guardarRegistro(registroNuevo);	
-				System.out.println("Registro Tracking Guardada");
+				System.out.println("Registro Tracking Guardado");
 				
 				return "redirect:/registros/listar/";
 			}

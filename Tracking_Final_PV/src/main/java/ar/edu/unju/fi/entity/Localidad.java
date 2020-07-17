@@ -18,6 +18,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -37,20 +38,20 @@ public class Localidad implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_AUTO")
 	private Long id;
-	
+
 	@Column(name = "NOMBRE_LOCALIDAD")
-	//@NotBlank(message = "Ingrese algún nombre!")
+	// @NotBlank(message = "Ingrese algún nombre!")
 	@NotEmpty
 	private String nombreLocalidad;
-	
 
-	@OneToMany(mappedBy = "localidad")
-	private List<RegistroTracking> registros = new ArrayList<RegistroTracking>();
 	
+	  @OneToMany(mappedBy = "localidad")
+	  @Autowired private List<RegistroTracking> registros = new
+	  ArrayList<RegistroTracking>();
+	 
 	public Localidad() {
 		// TODO Auto-generated constructor stub
 	}
-
 
 	/**
 	 * @param nombreLocalidad
@@ -58,8 +59,6 @@ public class Localidad implements Serializable {
 	public Localidad(String nombreLocalidad) {
 		this.nombreLocalidad = nombreLocalidad;
 	}
-
-
 
 	/**
 	 * @return the id
@@ -88,24 +87,20 @@ public class Localidad implements Serializable {
 	public void setNombreLocalidad(String nombreLocalidad) {
 		this.nombreLocalidad = nombreLocalidad;
 	}
+
+		/**
+			 * @return the registros
+			 */
 	
-
-
-	/**
-	 * @return the registros
-	 */
-	public List<RegistroTracking> getRegistros() {
-		return registros;
-	}
-
-
-	/**
-	 * @param registros the registros to set
-	 */
-	public void setRegistros(List<RegistroTracking> registros) {
-		this.registros = registros;
-	}
-
+	  public List<RegistroTracking> getRegistros() { return registros; }
+	  
+	  
+	 /**
+		* @param registros the registros to set
+		*/
+		  public void setRegistros(List<RegistroTracking> registros)
+		  { this.registros =  registros; }
+			 
 
 	/**
 	 * @return the serialversionuid
@@ -114,10 +109,9 @@ public class Localidad implements Serializable {
 		return serialVersionUID;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Localidad [id=" + id + ", nombreLocalidad=" + nombreLocalidad + "]";
-	} 
-	
+	}
+
 }

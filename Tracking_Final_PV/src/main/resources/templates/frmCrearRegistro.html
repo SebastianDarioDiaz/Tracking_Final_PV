@@ -227,7 +227,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							
 							 <div class="form-group row">	
 							<label for="vehiculo" >Tripulante</label>
-								<select id="tripulante" class="form-control form-control-sm col-md-6" th:field="*{tripulantes}" >
+								<select id="tripulante" class="form-control form-control-sm col-md-6" th:object="${tripulanteGuardar}" >
 									<option th:each="t:${listaTripulantes}" 
 									th:value="${t.idTripulante}"
 									th:text="${t.nombresTripulante}"/>

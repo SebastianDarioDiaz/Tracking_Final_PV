@@ -56,16 +56,14 @@ public class RegistroTracking implements Serializable {
 	@JoinTable( name = "REGISTROS_TRIPULANTES",joinColumns = @JoinColumn(name  = "ID_REGISTRO"), inverseJoinColumns = @JoinColumn(name =  "ID_TRIPULANTE"))
 	private List<Tripulante> tripulantes = new ArrayList<Tripulante>();
 	
-	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@Autowired
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "ID_VEHICULO")
-	
 	private Vehiculo vehiculo;
 	
-
-	@ManyToOne(fetch = FetchType.EAGER)
+	@Autowired
+	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	@JoinColumn(name = "ID_LOCALIDAD")
-	
 	private Localidad localidad;
 	
 	public RegistroTracking() {

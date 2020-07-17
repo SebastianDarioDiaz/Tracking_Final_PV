@@ -210,13 +210,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<tr th:each="r : ${registros}">
 									<td scope="row" th:text="${r.id}"></td>
 									<td scope="row" th:text="${r.fechaHora}"></td>
-									<!-- <td scope="row" th:text="${r.tripulantes}"></td> -->
+									<td scope="row" th:text="${r.detalleLugarRegistro}"></td>
+									<td scope="row" th:text="${r.tripulantes}"></td> 
 									<td scope="row" th:text="${r.vehiculo}"></td>
-									<td scope="row" th:text="${r.localidad}"></td>
+									 <td scope="row" th:text="${r.localidad}"></td>
 	
-									<td><center><a  th:href="@{/localidades/editar/} + ${l.id}"  title="Editar Localidad"> <i class="fa fa-edit"></i></a></center>
+									<td><center><a  th:href="@{/registros/editar/} + ${r.id}"  title="Editar Registro"> <i class="fa fa-edit"></i></a></center>
 									
-									<td><center><a  th:href="@{/localidades/eliminar/} + ${l.id}" title="Eliminar Localidad"
+									<td><center><a  th:href="@{/registros/eliminar/} + ${r.id}" title="Eliminar Registro"
 									onclick="return confirm('Está seguro que desea eliminar el Registro?')"><i class="fa fa-trash-o"></i></a></td></center>			
 							</tbody>
 						</table>
