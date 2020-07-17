@@ -54,10 +54,7 @@ public class Usuario implements Serializable {
 	
 	@Column(name = "TIPO_USUARIO")
 	private String tipoUsuario;
-	
-	/*@OneToMany(cascade = CascadeType.ALL, 
-			   fetch = FetchType.EAGER)
-	private List<Rol> roles;*/
+
 	
 	public Usuario() {
 		// TODO Auto-generated constructor stub

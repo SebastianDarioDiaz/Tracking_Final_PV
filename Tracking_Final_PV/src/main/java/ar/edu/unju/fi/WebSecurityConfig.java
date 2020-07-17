@@ -33,13 +33,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.authorizeRequests()
 				.antMatchers(resources).permitAll()
-				.antMatchers("/", "/home","/filtro").permitAll()
+				.antMatchers("/", "/home").permitAll() //,"/usuarios/listar","/usuarios/crear","/usuarios/guardar"
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()
 				.loginPage("/login")
 				.permitAll()
-				//.defaultSuccessUrl("/index")
+				.defaultSuccessUrl("/home")
 				.successHandler(autenticacion)
 				.failureUrl("/login?error=true")
 				.usernameParameter("nombreUsuario")

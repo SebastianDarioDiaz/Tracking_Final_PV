@@ -4,6 +4,7 @@
 package ar.edu.unju.fi.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +21,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 
@@ -45,24 +47,25 @@ public class RegistroTracking implements Serializable {
 	@Column(name = "ID_AUTO")
 	private Long id;
 	
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "RT_FECHA")
-	private LocalDateTime fechaHora;
+	private LocalDate fechaHora;
 	
 	@Column(name = "RT_NOMBRE")
 	private String detalleLugarRegistro;
 	
-
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+	
+	@ManyToMany
 	@JoinTable( name = "REGISTROS_TRIPULANTES",joinColumns = @JoinColumn(name  = "ID_REGISTRO"), inverseJoinColumns = @JoinColumn(name =  "ID_TRIPULANTE"))
 	private List<Tripulante> tripulantes = new ArrayList<Tripulante>();
 	
-	@Autowired
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	
+	@ManyToOne(cascade = CascadeType.ALL)	
 	@JoinColumn(name = "ID_VEHICULO")
 	private Vehiculo vehiculo;
 	
-	@Autowired
-	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+
+	@ManyToOne
 	@JoinColumn(name = "ID_LOCALIDAD")
 	private Localidad localidad;
 	
@@ -77,7 +80,21 @@ public class RegistroTracking implements Serializable {
 	 * @param vehiculo
 	 * @param localidad
 	 */
-	public RegistroTracking(LocalDateTime fechaHora, String detalleLugarRegistro, List<Tripulante> tripulantes,
+	
+	
+
+	public Long getId() {
+		return id;
+	}
+
+	/**
+	 * @param fechaHora
+	 * @param detalleLugarRegistro
+	 * @param tripulantes
+	 * @param vehiculo
+	 * @param localidad
+	 */
+	public RegistroTracking(LocalDate fechaHora, String detalleLugarRegistro, List<Tripulante> tripulantes,
 			Vehiculo vehiculo, Localidad localidad) {
 		this.fechaHora = fechaHora;
 		this.detalleLugarRegistro = detalleLugarRegistro;
@@ -86,29 +103,25 @@ public class RegistroTracking implements Serializable {
 		this.localidad = localidad;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
 	/**
 	 * @param id the id to set
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
 
 	/**
 	 * @return the fechaHora
 	 */
-	public LocalDateTime getFechaHora() {
+	public LocalDate getFechaHora() {
 		return fechaHora;
 	}
-
 
 	/**
 	 * @param fechaHora the fechaHora to set
 	 */
-	public void setFechaHora(LocalDateTime fechaHora) {
+	public void setFechaHora(LocalDate fechaHora) {
 		this.fechaHora = fechaHora;
 	}
 
@@ -126,18 +139,10 @@ public class RegistroTracking implements Serializable {
 		this.detalleLugarRegistro = detalleLugarRegistro;
 	}
 
-	
-
-	/**
-	 * @return the tripulantes
-	 */
 	public List<Tripulante> getTripulantes() {
 		return tripulantes;
 	}
 
-	/**
-	 * @param tripulantes the tripulantes to set
-	 */
 	public void setTripulantes(List<Tripulante> tripulantes) {
 		this.tripulantes = tripulantes;
 	}
@@ -156,16 +161,12 @@ public class RegistroTracking implements Serializable {
 		this.vehiculo = vehiculo;
 	}
 
-	/**
-	 * @return the localidad
-	 */
+
 	public Localidad getLocalidad() {
 		return localidad;
 	}
 
-	/**
-	 * @param localidad the localidad to set
-	 */
+
 	public void setLocalidad(Localidad localidad) {
 		this.localidad = localidad;
 	}
@@ -182,8 +183,8 @@ public class RegistroTracking implements Serializable {
 	@Override
 	public String toString() {
 		return "RegistroTracking [idRegitroT=" + id + ", fechaHora=" + fechaHora + ", detalleLugarRegistro="
-				+ detalleLugarRegistro + ", tripulantes=" + tripulantes + ", vehiculo=" + vehiculo + ", localidad="
-				+ localidad + "]";
+				+ detalleLugarRegistro + ", tripulantes=" /*+ tripulantes */+ ", vehiculo=" + vehiculo + ", localidad="
+				/*+ localidad */+ "]";
 	}	
 
 }

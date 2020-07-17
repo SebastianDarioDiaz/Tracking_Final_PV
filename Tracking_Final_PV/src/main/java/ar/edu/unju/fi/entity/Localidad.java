@@ -46,8 +46,8 @@ public class Localidad implements Serializable {
 
 	
 	  @OneToMany(mappedBy = "localidad")
-	  @Autowired private List<RegistroTracking> registros = new
-	  ArrayList<RegistroTracking>();
+	  @Autowired 
+	  private List<RegistroTracking> registros = new  ArrayList<RegistroTracking>();
 	 
 	public Localidad() {
 		// TODO Auto-generated constructor stub
@@ -59,6 +59,14 @@ public class Localidad implements Serializable {
 	public Localidad(String nombreLocalidad) {
 		this.nombreLocalidad = nombreLocalidad;
 	}
+
+	
+	/**
+	 * @param id
+	 * @param nombreLocalidad
+	 * @param registros
+	 */
+
 
 	/**
 	 * @return the id
@@ -88,19 +96,13 @@ public class Localidad implements Serializable {
 		this.nombreLocalidad = nombreLocalidad;
 	}
 
-		/**
-			 * @return the registros
-			 */
-	
-	  public List<RegistroTracking> getRegistros() { return registros; }
+	 public List<RegistroTracking> getRegistros() {
+		 return registros; }
 	  
-	  
-	 /**
-		* @param registros the registros to set
-		*/
-		  public void setRegistros(List<RegistroTracking> registros)
-		  { this.registros =  registros; }
-			 
+
+	public void setRegistros(List<RegistroTracking> registros) { 
+		this.registros =  registros; }
+ 
 
 	/**
 	 * @return the serialversionuid

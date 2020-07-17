@@ -13,9 +13,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -36,33 +38,32 @@ public class Vehiculo implements Serializable {
 	@Column(name = "ID_AUTO")
 	private Long idVehiculo;
 	
-	@Column(name= "PATENTE", length = 150, nullable = true)
+	//@Column(name= "PATENTE", length = 150, nullable = true)
 	private String patente;
 	
-	@Column(name= "COLOR", length = 150, nullable = true)
+	//@Column(name= "COLOR", length = 150, nullable = true)
 	private String color;
 	
-	@Column(name= "TITULAR", length = 150, nullable = true)
+	//@Column(name= "TITULAR", length = 150, nullable = true)
 	private String titular;
 	
-	@Column(name= "MARCA", length = 150, nullable = true)
+	//@Column(name= "MARCA", length = 150, nullable = true)
 	private String marca;
 	
-	@Column(name= "MODELO", length = 150, nullable = true)
+	//@Column(name= "MODELO", length = 150, nullable = true)
 	private String modelo;
 	
-	@Column(name= "TIPO", length = 150, nullable = true)
+	//@Column(name= "TIPO", length = 150, nullable = true)
 	private String tipo;
 	
-	@Column(name= "CHASIS", length = 150, nullable = true)
+	//@Column(name= "CHASIS", length = 150, nullable = true)
 	private String numeroChasis;
 	
-	@Column(name= "MOTOR", length = 150, nullable = true)
+	//@Column(name= "MOTOR", length = 150, nullable = true)
 	private String numeroMotor;
 	
 	
-
-	@OneToMany(mappedBy = "vehiculo")
+	@OneToMany(mappedBy = "vehiculo",cascade = CascadeType.ALL)
 	private List<RegistroTracking> registros = new ArrayList<RegistroTracking>();
 	
 	public Vehiculo() {
@@ -225,25 +226,14 @@ public class Vehiculo implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
 
-
-	/**
-	 * @return the registros
-	 */
 	public List<RegistroTracking> getRegistros() {
 		return registros;
 	}
 
-
-	/**
-	 * @param registros the registros to set
-	 */
 	public void setRegistros(List<RegistroTracking> registros) {
 		this.registros = registros;
 	}
-
 
 	@Override
 	public String toString() {

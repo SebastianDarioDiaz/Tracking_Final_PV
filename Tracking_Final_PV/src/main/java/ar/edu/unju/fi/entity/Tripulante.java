@@ -51,7 +51,7 @@ public class Tripulante implements Serializable {
 	@Autowired
 	@ManyToMany(mappedBy = "tripulantes")
 	private List<RegistroTracking> registros = new ArrayList<RegistroTracking>();
-			
+
 			
 			
 	public Tripulante() {
@@ -145,20 +145,10 @@ public class Tripulante implements Serializable {
 		this.nacionalidadTripulante = nacionalidadTripulante;
 	}
 
-	
-
-
-	/**
-	 * @return the registros
-	 */
 	public List<RegistroTracking> getRegistros() {
 		return registros;
 	}
 
-
-	/**
-	 * @param registros the registros to set
-	 */
 	public void setRegistros(List<RegistroTracking> registros) {
 		this.registros = registros;
 	}

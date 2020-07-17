@@ -40,6 +40,11 @@ public class RegistroTrackingController {
 	@Autowired
 	private ITripulanteService tripulanteService;
 	
+	@Autowired
+	private Localidad localidad;
+	
+	@Autowired
+	private Vehiculo vehiculo;
 			///REGISTRO TRACKING///
 			///REGISTRO TRACKING///
 			///REGISTRO TRACKING///
@@ -58,57 +63,55 @@ public class RegistroTrackingController {
 			@GetMapping("/registros/crear")
 			public String crearRegistro(Model model)  {
 				RegistroTracking registroNuevo = new RegistroTracking();
-				Tripulante tripulanteGuardar = new Tripulante();
-				Localidad localidadNueva = new Localidad();
-				Vehiculo vehiculoNuevo = new Vehiculo();
-				
-				Iterable<Tripulante> listaTripulantes = tripulanteService.listarTripulantes();
-				Iterable<Localidad> localidades = localidadService.listarLocalidades();
+				/*Localidad localidadNuevo = new Localidad();
+				Vehiculo vehiculoNuevo = new Vehiculo();*/
+				//Tripulante tripulanteGuardar = new Tripulante();
+				//Iterable<Tripulante> tripulantes = tripulanteService.listarTripulantes();
+				//Iterable<Localidad> localidades = localidadService.listarLocalidades();
 				Iterable<Vehiculo> vehiculos = vehiculoService.listarVehiculos();
 				model.addAttribute("registro", registroNuevo); 
-				model.addAttribute("tripulanteGuardar", tripulanteGuardar);
-				model.addAttribute("localidadGuardar", localidadNueva);
-				model.addAttribute("vehiculo", vehiculoNuevo);
-				//Lista de Vehiculos para el Select.
-				model.addAttribute("listaTripulantes", listaTripulantes);
-				//Lista de Vehiculos para el Select.
+				/*model.addAttribute("localidad", localidadNuevo);
+				model.addAttribute("vehiculo", vehiculoNuevo);*/
+				//model.addAttribute("tripulanteGuardar", tripulanteGuardar);
+				//model.addAttribute("tripulantes", tripulantes);
 				model.addAttribute("vehiculos", vehiculos); 
-				//Lista de localidades para el select.
-				model.addAttribute("localidades", localidades); 
+				//model.addAttribute("localidades", localidades); 
 				model.addAttribute("registros", registroService.listarRegistros());
+				
 				System.out.println("Registro Tracking Creado");
 				return "frmCrearRegistro";
 			}
 			
 			@PostMapping("/registros/guardar")
-			public String guardarRegistro(@Valid @ModelAttribute RegistroTracking registroNuevo,BindingResult result,Model model ) {
-				Tripulante tripulanteGuardar = new Tripulante();
-				Iterable<Tripulante> tripulantes = tripulanteService.listarTripulantes();
-				Iterable<Localidad> localidades = localidadService.listarLocalidades();
+			public String guardarRegistro(@Valid @ModelAttribute RegistroTracking registro,BindingResult result)  {
+				//Iterable<Tripulante> tripulantes = tripulanteService.listarTripulantes();
+				//Iterable<Localidad> localidades = localidadService.listarLocalidades();
 				Iterable<Vehiculo> vehiculos = vehiculoService.listarVehiculos();
-				model.addAttribute("registro", registroNuevo); 
-				model.addAttribute("tripulanteGuardar", tripulanteGuardar);
-				model.addAttribute("tripulantes", tripulantes);
-				model.addAttribute("vehiculos", vehiculos); 
-				model.addAttribute("localidades", localidades);
+				//Tripulante tripulanteGuardar = new Tripulante();
+				//registroNuevo.getTripulantes().add(tripulanteGuardar);
+				
+				
 				
 				/*if(result.hasErrors()) {
 					model.addAttribute("registro", registroNuevo); 
-					model.addAttribute("tripulanteGuardar", tripulanteGuardar);
 					
-					model.addAttribute("tripulantes", tripulantes);
+					///model.addAttribute("tripulanteGuardar", tripulanteGuardar);
+					
+					//model.addAttribute("tripulantes", tripulantes);
 					model.addAttribute("vehiculos", vehiculos); 
-					model.addAttribute("localidades", localidades); 
+					//model.addAttribute("localidades", localidades); 
 					System.out.println("Error al guardar Registro Tracking");
 					model.addAttribute("registros", registroService.listarRegistros());
 					return "frmCrearRegistro";
 				}*/
-			
-				registroNuevo.getTripulantes().add(tripulanteGuardar);
-				registroService.guardarRegistro(registroNuevo);	
+				
+				//model.addAttribute("tripulanteGuardar", tripulanteGuardar);
+				/*Vehiculo vehiculoNuevo = new Vehiculo("PATENTE", "COLOR", "TITULAR", "MARCA", "M", "T", "C", "M");
+				vehiculoService.guardarVehiculo(vehiculoNuevo);*/
+				registroService.guardarRegistro(registro);	
 				System.out.println("Registro Tracking Guardado");
 				
-				return "redirect:/registros/listar/";
+				return "redirect:/registros/listar";
 			}
 			
 			@GetMapping("/registros/editar/{id}")
